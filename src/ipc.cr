@@ -1,4 +1,4 @@
-require "./lib/*"
+require "./lib/ipc.cr"
 
 module IPC
   extend self
