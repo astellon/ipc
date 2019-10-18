@@ -13,7 +13,7 @@
     fprintf(fp, "alias %s = UInt%d\n", alias, sizeof(key_t)*8);\
   }
 
-#define DEF_CONST(constant) fprintf(fp, #constant " = Int32.new(%d)\n", constant);
+#define DEF_CONST(constant) fprintf(fp, #constant " = LibC::Int.new(%d)\n", constant);
 
 #define DEF_STRUCT(type) fprintf(fp, "Sizeof_struct_%s = %d\n", #type, sizeof(struct type))
 #define DEF_FIELD_OFFSET(type, field) fprintf(fp, "Offsetof_%s_%s = %d\n", #type, #field, (long)OFFSET_OF(struct type, field))
