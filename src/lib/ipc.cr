@@ -2,7 +2,6 @@ require "./libipc.cr"
 require "./libshm.cr"
 
 module IPC
-
   class ShmidDs
     property raw : Pointer(Void)
 
@@ -10,7 +9,7 @@ module IPC
       @raw = Pointer(Void).malloc(LibC::Sizeof_struct_shmid_ds)
     end
 
-    {% for member in {"perm", "segz", "lpid", "cpid", "nattch", "atime", "dtime", "ctime"}%}
+    {% for member in {"perm", "segz", "lpid", "cpid", "nattch", "atime", "dtime", "ctime"} %}
     def {{member.id}}
       offset = LibC::Offsetof_shmid_ds_shm_{{member.id}}
       return (@raw + offset).as(Pointer(LibC::ShmattT)).value
@@ -68,5 +67,5 @@ module IPC
         LibC.shmctl(@shm_id, LibC::IPC_RMID, Pointer(T).null)
       end
     end
-  end  # class SharedMemory
-end  # module IPC
+  end # class SharedMemory
+end   # module IPC
