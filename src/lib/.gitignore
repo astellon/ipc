@@ -1,2 +1,2 @@
-./libipc.cr
-./libshm.cr
+libipc.cr
+libshm.cr
