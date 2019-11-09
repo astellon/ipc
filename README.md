@@ -1,3 +1,3 @@
-# IPCcr
+# IPC
 
-edit soon.
+Inter-Process Communication (IPC) library for Crystal.
