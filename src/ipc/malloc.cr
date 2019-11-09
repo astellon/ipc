@@ -5,13 +5,13 @@ module IPC
     @@malloced = [] of Pointer(Void)
     @@ids = [] of Int32
 
-    def malloc(key : String, id : Int, size : Int, addr = Pointer(Void).null, flags = IPC::Flag::Create|IPC::Flag::Read|IPC::Flag::Write)
-      k = IPC.getkey(key, id)
-      i = IPC.getid(T, k, size, flags)
-      p = IPC.attach(T, i, addr, 0)
-      @@malloced << p.as(Pointer(Void))
-      @@ids << i
-      return p
+    def malloc(key : String, id : Int, size : Int, addr = Pointer(Void).null, flags = IPC::Flag::Create | IPC::Flag::Read | IPC::Flag::Write)
+      shm_key = IPC.getkey(key, id)
+      shm_id = IPC.getid(T, shm_key, size, flags)
+      shm_ptr = IPC.attach(T, shm_id, addr, 0)
+      @@malloced << shm_ptr.as(Pointer(Void))
+      @@ids << shm_id
+      return shm_ptr
     end
 
     at_exit {
