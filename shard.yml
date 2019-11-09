@@ -1,0 +1,12 @@
+name: ipc
+version: 0.1.0
+
+authors:
+  - astellon <22632787+astellon@users.noreply.github.com>
+
+crystal: 0.31.1
+
+description: |
+  Inter-Process Communication (IPC) library for Crystal
+
+license: MIT
