@@ -9,9 +9,15 @@ module IPC
       shm_key = IPC.getkey(key, id)
       shm_id = IPC.getid(T, shm_key, size, flags)
       shm_ptr = IPC.attach(T, shm_id, addr, 0)
-      @@malloced << shm_ptr.as(Pointer(Void))
-      @@ids << shm_id
+
+      SharedMemory.manage(shm_id, shm_ptr.as(Pointer(Void)))
+
       return shm_ptr
+    end
+
+    def manage(id : Int32, ptr : Pointer(U)) forall U
+      @@ids << id
+      @@malloced << ptr.as(Pointer(Void))
     end
 
     at_exit {
@@ -26,5 +32,6 @@ module IPC
         end
       end
     }
+
   end
 end
